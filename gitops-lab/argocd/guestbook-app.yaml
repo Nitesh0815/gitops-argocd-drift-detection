@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: guestbook
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Nitesh0815/gitops-argocd-drift-detection.git
+    targetRevision: HEAD
+    path: apps/guestbook
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: guestbook
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true        # This is what auto-reverts drift
+    syncOptions:
+      - CreateNamespace=true
