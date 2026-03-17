@@ -15,6 +15,6 @@ spec:
   syncPolicy:
     automated:
       prune: true
-      selfHeal: true        # This is what auto-reverts drift
+      selfHeal: true
     syncOptions:
       - CreateNamespace=true
